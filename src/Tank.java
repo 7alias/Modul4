@@ -14,13 +14,13 @@ public class Tank {
     public Tank(int x, int y) {
         this.x = x;
         this.y = y;
-        this.fuel = 200;
+        this.fuel = 100;
     }
 
     public Tank() {
         x=0;
         y=0;
-        this.fuel = 200;
+        this.fuel = 100;
     }
 
     public void goForward(int i) {
@@ -68,17 +68,19 @@ public class Tank {
 
 
 
-        if (i > r) {
+        if (i < this.fuel) {
+            if (i<0){i =i*-1;}
             r = i;
-                 this.r = this.fuel-r;
-            this.fuel -=r;
+                 this.fuel -= r;
 
-        } else if (this.fuel < 0) {
-            this.r = 0;
+
+        } else if (i> this.fuel) {
+            r = this.fuel;
+            this.fuel = 0;
 
         } else {
             this.r = this.fuel;
-
+this.fuel = this.fuel -i;
         }
 
         return r;
