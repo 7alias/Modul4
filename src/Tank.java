@@ -3,7 +3,7 @@ public class Tank {
     int x, y = 0;
     int dir;
     int fuel;
-
+    int r;
 
     public Tank(int x, int y, int f) {
         this.x = x;
@@ -14,15 +14,19 @@ public class Tank {
     public Tank(int x, int y) {
         this.x = x;
         this.y = y;
+        this.fuel = 200;
     }
 
     public Tank() {
+        x=0;
+        y=0;
+        this.fuel = 200;
     }
 
     public void goForward(int i) {
 
         int w = getFuel(this.fuel, i);
-        this.fuel = this.fuel - i;
+
         if (dir == 0) {
             x += w;
 
@@ -43,7 +47,7 @@ public class Tank {
 
 
     public void printPosition() {
-        System.out.println("The Tank is at " + x + ", " + y + " now. Fuel left: " + this.fuel);
+        System.out.println("The Tank is at " + x + ", " + y + " now. ");
     }
 
     public void turnLeft() {
@@ -62,19 +66,19 @@ public class Tank {
 
     public int getFuel(int fuel, int i) {
 
-        if (fuel == 0) {
-            this.fuel = 100;
-        }
-        int r = fuel;
+
+
         if (i > r) {
-            r = i - r;
-            this.fuel = r - i;
-        } else if (fuel < 0) {
-            r = 0;
-            this.fuel = 0;
-        } else {
             r = i;
-            this.fuel = -i;
+                 this.r = this.fuel-r;
+            this.fuel -=r;
+
+        } else if (this.fuel < 0) {
+            this.r = 0;
+
+        } else {
+            this.r = this.fuel;
+
         }
 
         return r;
